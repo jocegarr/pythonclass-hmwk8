@@ -9,7 +9,7 @@ from tabs import tab_3
 
 ########### Define your variables ######
 
-myheading1 = 'Plotly Dash -- multiple tabs'
+myheading1 = 'Plans for the Week'
 tabtitle = 'dash tabs'
 sourceurl = 'https://dash.plot.ly/dash-core-components/tabs'
 githublink = 'https://github.com/austinlasseter/dash-multitab-simple'
@@ -28,22 +28,22 @@ app.layout = html.Div([
     html.H1(myheading1),
     dcc.Tabs(id="tabs-example", value='tab-1-example',
             children=[
-                dcc.Tab(label='Tab One', value='tab-1-example'),
-                dcc.Tab(label='Tab Two', value='tab-2-example'),
-                dcc.Tab(label='Tab Three', value='tab-3-example'),
+                dcc.Tab(label='Cooking', value='tab-1-example'),
+                dcc.Tab(label='Painting', value='tab-2-example'),
+                dcc.Tab(label='Renovations', value='tab-3-example'),
     ]),
     html.Div([
         html.Div(id='tabs-content-example'),
     ], className='twelve columns',
-        style={'marginBottom': 50, 'marginTop': 25}),
+        style={'marginBottom': 75, 'marginTop': 25}),
     html.Div([
         html.A('Code on Github', href=githublink),
         html.Br(),
         html.A("Data Source", href=sourceurl),
     ], className='twelve columns',
         style={'textAlign':'right',
-                'fontColor':'#FFFFFF',
-                'backgroundColor':'#D3D3D3',})
+                'fontColor':'#578f36',
+                'backgroundColor':'#41ab0c',})
 ])
 
 @app.callback(Output('tabs-content-example', 'children'),
@@ -60,19 +60,19 @@ def render_content(tab):
 @app.callback(dash.dependencies.Output('page-1-content', 'children'),
               [dash.dependencies.Input('page-1-dropdown', 'value')])
 def page_1_dropdown(value):
-    return 'You have selected "{}"'.format(value)
+    return 'You will be cooking "{}"'.format(value)
 
 # Tab 2 callback
 @app.callback(Output('page-2-content', 'children'),
               [Input('page-2-radios', 'value')])
 def page_2_radios(value):
-    return 'You have selected "{}"'.format(value)
+    return 'You will be painting the living room in "{}"'.format(value)
 
 # Tab 3 callback
 @app.callback(Output('page-3-content', 'children'),
               [Input('page-3-slider', 'value')])
 def page_3_slider(value):
-    return f'You have selected "{str(value)}"'
+    return f'Number of renovations you will be doing "{str(value)}"'
 
 
 ############ Deploy
